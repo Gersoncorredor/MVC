@@ -7,7 +7,10 @@ require("dotenv").config();
 require("./models/index.js");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credential: true
+}));
 app.use(express.json());
 
 
