@@ -14,6 +14,7 @@ app.use(cors({
 app.use(express.json());
 
 
+
 app.use("/usuarios",userRouter);
 app.use("/api/auth",authRouter)
 
