@@ -1,17 +1,18 @@
 import { Navigate } from "react-router-dom";
 
-const protectedRoute = ({children}) =>{
-    const token = localStorage.getItem("authToken");
+const ProtectedRoute = ({children, allowedRoles}) =>{
+    const response = JSON.parse(localStorage.getItem("MVC_authToken")) || "";
     
-    return token ? children : <Navigate to="/login"/>;
+    if (!response.token){
+        return <Navigate to="/"/>;
+    }
+    if (allowedRoles && !allowedRoles.includes(response.rol)){
+        return <Navigate to="/"/>;
+    }
+    
+    return children;
 }
 
-module.exports = protectedRoute;
+export default ProtectedRoute;
 
 
-/* 
-EJEMPLO DE USSO
-    <Routes>
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-    </Routes>
-*/

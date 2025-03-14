@@ -1,21 +1,17 @@
-const Api_URL = process.env.REACT_APP_API_URL;  
+import axios from 'axios';
+
+const Api_URL = "//localhost:3001";  
 
 export const loginAuth = async (credentials) => {
     try{
-        const response = await fetch(`${Api_URL}/auth/login`,{
-            method: 'POST',
-            headers:{
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(credentials),
+        const response = await axios.post(`${Api_URL}/api/auth/login`, credentials,{
+            headers: {
+                'Content-Type': 'application/json',
+            },  
         });
 
-        if (!response.ok){
-            throw new Error("Error al Iniciar sesion")
-        }
-        const data = await response.json();
-        return data;
+        return response.data;
     }catch(error){
-        throw error;
+     return error.response.data;
     }
 }
