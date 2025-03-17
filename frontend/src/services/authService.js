@@ -15,3 +15,17 @@ export const loginAuth = async (credentials) => {
      return error.response.data;
     }
 }
+
+export const registerAuth = async (credentials) => {
+    try{
+        const response = await axios.post(`${Api_URL}/api/auth/register`, credentials,{
+            headers : {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data;
+    }catch (error) {
+        return error.response.data;
+    }
+}
