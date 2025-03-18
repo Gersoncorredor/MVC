@@ -15,7 +15,7 @@ const AppRouter = () => {
     admin: 3
   }
   return (
-    <header className="App-header">
+  <header className="App-header">
   <Router>
     <Routes>
         <Route path="/" element={<Login/>}/>
@@ -23,7 +23,7 @@ const AppRouter = () => {
         <Route path="/home" element={<ProtectedRoute allowedRoles={[rol.cliente]}><Home/></ProtectedRoute>} />
     </Routes>
   </Router>
-    </header>
+  </header>
 
   );
 };

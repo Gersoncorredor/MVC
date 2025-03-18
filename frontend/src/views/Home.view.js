@@ -1,10 +1,17 @@
+import React from 'react';
+import Navigation from '../components/Navigation'
+import styles from '../styles/Home.module.css'
+import { logout } from "../services/authService";
 
-function Home (){
+
+
+const Home = () => {
 
 return (
-    <div>
+    <Navigation>
         <h1>HOME</h1>
-    </div>
+    </Navigation>
+    
 )
 }
 

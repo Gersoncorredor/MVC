@@ -29,3 +29,13 @@ export const registerAuth = async (credentials) => {
         return error.response.data;
     }
 }
+
+export const  logout = () => {
+try{
+    localStorage.removeItem('MVC_authToken');
+    return true;
+}catch(error){
+    return error;
+}
+}   
+    

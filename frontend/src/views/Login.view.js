@@ -24,7 +24,6 @@ const Login = () => {
     }))
   }
 
-localStorage.removeItem('MVC_authToken'); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +31,7 @@ localStorage.removeItem('MVC_authToken');
     try {
       const response = await loginAuth(formData);
       if (response.token) {
+        console.log(response);
         localStorage.setItem('MVC_authToken', JSON.stringify(response));
         navigate('/home');
       }else{
@@ -80,6 +80,7 @@ localStorage.removeItem('MVC_authToken');
       <Button type="submit" disabled={loading}>
       Iniciar sesión
       </Button>
+    <a href="/registrame">Registrarse</a>
     </form>
   </div>
   )
