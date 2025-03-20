@@ -2,25 +2,25 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../services/authService";
 import styles from "../styles/Navigation.module.css";
+import Modal from "../components/Modal";
+import Menu from "../assets/icons/navigation/menu.png"
 
 const Navigation = ({children}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
 
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
+
+
   return (
 <div className={styles.container}>
       <div className={`${styles.sidebar} ${!isOpen ? styles.collapsed : ''}`}>
         <div className={styles.sidebarHeader}>
-          <button 
-            className={styles.toggleButton}
+          <img src={Menu} alt="toggle menu" 
+            className={`${styles.toggleButton} ${styles.menu}`}
+            role="button"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? '←' : '→'}
-          </button>
+          </img>
           {isOpen && <h2>Menu</h2>}
         </div>
         
@@ -34,12 +34,12 @@ const Navigation = ({children}) => {
               <span className={styles.icon}>👤</span>
               {isOpen && <span>Perfil</span>}
             </li>
-            <li onClick={() => navigate('/settings')}>
+            <li onClick={""}>
               <span className={styles.icon}>⚙️</span>
               {isOpen && <span>Configuración</span>}
             </li>
-            <li onClick={handleLogout}>
-              <span className={styles.icon} onClick={logout}>🚪</span>
+            <li data-bs-toggle="modal" data-bs-target="#logoutModal">
+              <span className={styles.icon} >🚪</span>
               {isOpen && <span>Cerrar Sesión</span>}
             </li>
           </ul>
@@ -47,6 +47,16 @@ const Navigation = ({children}) => {
       </div>
       <div className={styles.mainContent}>
         {children}
+
+        <Modal
+        id="logoutModal"
+        title="Confirmación"
+        closeText="Cancelar"
+        confirmText="Salir"
+        onConfirm={logout}
+      >
+        <p>¿Quieres cerrar sesion?</p>
+      </Modal>
       </div>
     </div>
   );

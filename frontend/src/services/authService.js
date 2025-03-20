@@ -33,7 +33,7 @@ export const registerAuth = async (credentials) => {
 export const  logout = () => {
 try{
     localStorage.removeItem('MVC_authToken');
-    return true;
+    return  window.location.reload(); ;
 }catch(error){
     return error;
 }
