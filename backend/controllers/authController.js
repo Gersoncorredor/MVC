@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
 }
 
 // REGISTRAR USUARIO
-exports .resgister = async (req, res) => {
+exports.resgister = async (req, res) => {
     const {nombre, email, password} = req.body;
     try{
     const userExist = await User.findOne({where: {email}});

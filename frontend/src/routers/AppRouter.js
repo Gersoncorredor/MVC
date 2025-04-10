@@ -1,9 +1,9 @@
 import React from 'react'
 import '../styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from '../views/Login.view.js';
-import Register from '../views/Register.view.js'
-import Home from '../views/Home.view.js';
+import Login from '../views/Login/Login.view.js';
+import Register from '../views/Register/Register.view.js'
+import Home from '../views/Home/Home.view.js';
 import ProtectedRoute from '../middleware/protectedRoute';
 
 

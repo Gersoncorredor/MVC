@@ -1,51 +1,12 @@
-import React, { useState, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
-import styles from '../styles/Register.module.css'
-import { registerAuth } from '../services/authService.js'
-import Button from '../components/Button.js'
+import React from 'react'
+import styles from './Register.module.css'
+import Button from '../../components/Button/Button.js'
+import { useRegisterViewModel } from '../../hooks/Register/useRegisterViewModel.js'
 
 const Register = () => {
-  const navigate = useNavigate()
- 
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    password: '',
-  })
-  const [loading, setLoading] = useState(false)
-  const [messages, setMessages] = useState('')
 
-
-
+  const { formData, handleChange, handleSubmit, loading, messages } = useRegisterViewModel()
   
-  const handleChange = useCallback((e) => {
-    const { name, value } = e.target
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }))
-  }, [setFormData]);
-
-const handleSubmit = async (e) =>{
-    e.preventDefault();
-    setLoading(true);
-    try{
-        const response = await registerAuth(formData)
-
-        if(response.message){
-          setLoading(false);
-         return setMessages(response.message)
-        }else{
-            navigate('/login')
-        }
-    }catch(error){
-        return setMessages(error.response?.data || "Error intente mas tarde")
-    }
-    finally{
-        setLoading(false);
-    }
-}  
-
   return (
     <div className={styles.registerContainer}>
       <div className={styles.registerForm}>

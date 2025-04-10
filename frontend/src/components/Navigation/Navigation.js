@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../services/authService";
-import styles from "../styles/Navigation.module.css";
-import Modal from "../components/Modal";
-import Menu from "../assets/icons/navigation/menu.png"
+import { logout } from "../../services/authService";
+import styles from "./Navigation.module.css";
+import Modal from "../Modal";
+import Menu from "../../assets/icons/navigation/menu.png"
 
 const Navigation = ({children}) => {
   const navigate = useNavigate();

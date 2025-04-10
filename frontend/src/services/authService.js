@@ -1,10 +1,10 @@
-import axios from 'axios';
+import { ApiDelivery } from "./ApiDelivery";
 
-const Api_URL = "//localhost:3001";  
+ 
 
 export const loginAuth = async (credentials) => {
     try{
-        const response = await axios.post(`${Api_URL}/api/auth/login`, credentials,{
+        const response = await ApiDelivery.post("/auth/login", credentials,{
             headers: {
                 'Content-Type': 'application/json',
             },  
@@ -18,7 +18,7 @@ export const loginAuth = async (credentials) => {
 
 export const registerAuth = async (credentials) => {
     try{
-        const response = await axios.post(`${Api_URL}/api/auth/register`, credentials,{
+        const response = await ApiDelivery.post("/auth/register", credentials,{
             headers : {
                 'Content-Type': 'application/json',
             },
